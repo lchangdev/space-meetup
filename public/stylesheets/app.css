@@ -38,3 +38,16 @@ a:visited {
   padding: 1em;
   background-color: #3B9089;
 }
+
+#name, #location, #description, #title, #body {
+  color: black;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

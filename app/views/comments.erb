@@ -1,0 +1,20 @@
+<h3>Post your comment here</h3>
+
+<!-- Use to see the error messages on the page -->
+    <ul>
+      <% @comment.errors.full_messages.each do |error| %>
+        <li><%= error.capitalize %></li>
+      <% end %>
+    </ul>
+
+<form name="submit" class="form" action="/meetups/<%= @meetup.id %>/comments" method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="<%= @comment.title %>" />
+    <br>
+    <br>
+    <label for="body">Comment:</label>
+    <input type="text" id="body" name="body" required/>
+    <br>
+    <br>
+    <input type="submit" value="submit" />
+</form>

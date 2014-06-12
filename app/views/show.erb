@@ -1,0 +1,54 @@
+<h1><%= @meetup_details.name %></h1>
+
+<% if @attendee_details.nil? %>
+  <!-- Join -->
+  <form id="myform" method="post" action="/meetups/<%= @meetup_details.id %>">
+    <input type="hidden" name="name" value="<%= current_user.id%>" />
+    <a class="link" onclick="document.getElementById('myform').submit();">Join <%= @meetup_details.name %></a>
+  </form>
+<% else %>
+  <!-- Leave -->
+  <form id="myform" method="post" action="/meetups/<%= @meetup_details.id %>/leave">
+    <input type="hidden" name="name" value="<%= current_user.id%>" />
+    <a class="link" onclick="document.getElementById('myform').submit();">Leave <%= @meetup_details.name %></a>
+  </form>
+<% end %>
+
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Location</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @meetup_details.name %></td>
+      <td><%= @meetup_details.location %></td>
+      <td><%= @meetup_details.description %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Attendees for <%= @meetup_details.name %></h3>
+<% @meetup_details.users.each do |user| %>
+  <p><img src="<%=user.avatar_url%>" class="avatar"> <%= user.username %></p>
+<% end %>
+<br>
+
+<a class="link" href='<%= @meetup_details.id %>/comments'>Leave a comment</a>
+
+<h3>Comments</h3>
+
+<% @comment_details.reverse.each do |c| %>
+<p><strong>author:</strong> <img src="<%=c.user.avatar_url%>" class="avatar"> <%= c.user.username %>
+<br>
+<strong>title:</strong>  <%= c.title %>
+<br>
+<strong>comment:</strong>  <%= c.body %></p>
+<% end %>
+
+

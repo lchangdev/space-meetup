@@ -1,1 +1,16 @@
-<h1><%= @title %></h1>
+<a class="link" href="/create_meetup">Create New Meetup</a>
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @meetups.each do |meetup| %>
+      <tr>
+        <td><a class="link" href="/meetups/<%= meetup.id %>"><%= meetup.name %></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
